@@ -8,22 +8,22 @@ from Crypto.Util.Padding import pad
 
 
 class PaymentSDK:
-    def __init__(self, iv_key, consumer_secret, consumer_key, environment, gateway):
+    def __init__(self, iv_key, consumer_secret, consumer_key, environment, root_domain):
         self.IVKey = iv_key
         self.consumerSecret = consumer_secret
         self.consumerKey = consumer_key
         self.environment = environment
-        self.gateway = gateway.lower()
+        self.root_domain = root_domain.lower()
 
     def get_checkout_base_url(self):
         if self.environment == "production":
-            return f"https://api.gateway.{self.gateway}.lipaware.com"
-        return f"https://sandbox.api.gateway.{self.gateway}.lipaware.com"
+            return f"https://api.gateway.{self.root_domain}"
+        return f"https://sandbox.api.gateway.{self.root_domain}"
 
     def get_direct_charge_base_url(self):
         if self.environment == "production":
-            return f"https://api.gateway.{self.gateway}.lipaware.com/v1"
-        return f"https://sandbox.api.gateway.{self.gateway}.lipaware.com/v1"
+            return f"https://api.gateway.{self.root_domain}/v1"
+        return f"https://sandbox.api.gateway.{self.root_domain}/v1"
 
     def get_checkout_auth_url(self):
         return f"{self.get_checkout_base_url()}/api/v1/api-auth/access-token"

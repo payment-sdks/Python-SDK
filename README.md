@@ -40,7 +40,7 @@ Before getting started, ensure you have the following:
     consumer_key = "your_consumer_key"
     environment = "sandbox", "production";
     charge_request_id = "your_charge_request_id"
-    gateway = "gateway_name";
+    root_domain = "example.com";
    
 4. **Running the script**
     ### To execute the script and run the main function, add the following line at the end of your script:
@@ -54,7 +54,7 @@ Before getting started, ensure you have the following:
 1. **To initialize the PaymentSDK class, provide the iv_key, consumer_key, consumer_secret, and environment parameters. The environment should be one of the following: 'production' or 'sandbox'.**
 
     ```bash
-   PaymentSDK = new PaymentSDK(iv_key, consumer_key, consumer_secret, environment, gateway);
+   PaymentSDK = new PaymentSDK(iv_key, consumer_key, consumer_secret, environment, root_domain);
 
 2. **Validate Payload**
 
@@ -101,7 +101,7 @@ Before getting started, ensure you have the following:
 5. **Build Checkout URL**
 
     ```bash
-    checkout_url = f"https://sandbox.checkout.{{gateway_url}}/?access_key={access_key}&payload={encrypted_payload}"
+    checkout_url = f"https://sandbox.checkout.{{root_domain}}/?access_key={access_key}&payload={encrypted_payload}"
     print("Checkout URL:", checkout_url)
 
 ## Direct API Usage
@@ -109,7 +109,7 @@ Before getting started, ensure you have the following:
 1. **To initialize the PaymentSDK class, provide the iv_key, consumer_key, consumer_secret, and environment parameters. The environment should be one of the following: 'production' or 'sandbox'.**
 
     ```bash
-    PaymentSDK = new PaymentSDK(iv_key, consumer_key, consumer_secret, environment);
+    PaymentSDK = new PaymentSDK(iv_key, consumer_key, consumer_secret, environment, root_domain);
    
 2. **Direct Charge**
 
