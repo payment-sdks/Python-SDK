@@ -101,7 +101,6 @@ class PaymentSDK:
             "consumerSecret": self.consumerSecret,
         }
         api_url = self.get_checkout_auth_url()
-        # api_url = self.CHECKOUT_BASE_URL[self.environment] + "/api/v1/api-auth/access-token"
         post_data = self.urlencode_params(auth_data)
 
         return await self._access_token_manager(api_url, post_data)
@@ -125,15 +124,10 @@ class PaymentSDK:
             f"{self.get_checkout_base_url()}/api/v1/checkout/request/status?"
             f"merchant_transaction_id={merchant_transaction_id}"
         )
-        # api_url = (
-        #     f"{self.CHECKOUT_BASE_URL[self.environment]}/api/v1/checkout/request/status?"
-        #     f"merchant_transaction_id={merchant_transaction_id}"
-        # )
         headers = {
             "Authorization": f"Bearer {access_token}",
         }
 
-        # async with aiohttp.ClientSession() as session:
         connector = aiohttp.TCPConnector(ssl=False)
         async with aiohttp.ClientSession(connector=connector) as session:
             async with session.get(api_url, headers=headers) as response:
@@ -158,8 +152,6 @@ class PaymentSDK:
         try:
             access_token = await self.get_direct_api_access_token()
 
-            # base_url = self.DIRECT_CHARGE_BASE_URL[self.environment]
-            # url = f"{base_url}/transaction/{charge_request_id}/status"
             url = f"{self.get_direct_charge_base_url()}/transaction/{charge_request_id}/status"
 
             headers = {
@@ -167,7 +159,6 @@ class PaymentSDK:
                 "Content-Type": "application/json",
             }
 
-            # async with aiohttp.ClientSession() as session:
             connector = aiohttp.TCPConnector(ssl=False)
             async with aiohttp.ClientSession(connector=connector) as session:
                 async with session.get(url, headers=headers) as response:
