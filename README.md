@@ -86,7 +86,7 @@ Before getting started, ensure you have the following:
 
     ```bash
     payload_json_string = json.dumps(payload)
-    encrypted_payload = checkout.encrypt(payload_json_string)
+    encrypted_payload = PaymentSDK.encrypt(payload_json_string)
     print("Encrypted Payload:", encrypted_payload)
    
 4. **Get Checkout Status**
@@ -95,7 +95,7 @@ Before getting started, ensure you have the following:
     merchant_transaction_id = payload.get("merchant_transaction_id")
     print("Merchant Transaction ID:", merchant_transaction_id)
    
-    checkout_data = await checkout.check_checkout_status(merchant_transaction_id)
+    checkout_data = await PaymentSDK.check_checkout_status(merchant_transaction_id)
     print("Checkout Data:", checkout_data)
 
 5. **Build Checkout URL**
@@ -119,7 +119,7 @@ Before getting started, ensure you have the following:
 3. **Get Charge Request Status**
 
     ```bash
-    checkout_request_status = await checkout.get_charge_request_status(
+    checkout_request_status = await PaymentSDK.get_charge_request_status(
     charge_request_id
     )
     print("Checkout Request Status", checkout_request_status)
